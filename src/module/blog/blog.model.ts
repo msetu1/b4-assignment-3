@@ -6,7 +6,7 @@ const blogSchema = new Schema<IBlog>(
   {
     title: { type: String, required: true },
     content: { type: String, required: true },
-    author: { type: String, required: true },
+    author: { type: String },
     isPublished: { type: Boolean, default: false },
   },
   {
