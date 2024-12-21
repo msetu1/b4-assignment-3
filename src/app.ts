@@ -3,6 +3,7 @@ import { Application, Request, Response } from 'express';
 import cors from 'cors';
 import notFound from './middlewares/notFound';
 import { BlogRoute } from './module/blog/blog.route';
+import globalErrorHandler from './middlewares/globalErrorHandler';
 const app: Application = express();
 
 // parsers
@@ -19,6 +20,8 @@ app.get('/', (req: Request, res: Response) => {
   });
 });
 
+// error handling
+app.use(globalErrorHandler);
 app.use(notFound);
 
 export default app;
