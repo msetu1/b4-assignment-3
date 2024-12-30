@@ -4,6 +4,7 @@ import cors from 'cors';
 import notFound from './middlewares/notFound';
 import { BlogRoute } from './module/blog/blog.route';
 import globalErrorHandler from './middlewares/globalErrorHandler';
+import { AuthRoute } from './module/auth/auth.route';
 const app: Application = express();
 
 // parsers
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 // application route
+app.use('/api/auth', AuthRoute);
 app.use('/api/blogs', BlogRoute);
 
 app.get('/', (req: Request, res: Response) => {

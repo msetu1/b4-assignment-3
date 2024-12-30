@@ -2,6 +2,6 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  role: 'user' | 'admin';
+  role: 'admin' | 'user';
   isBlocked: boolean;
 }
