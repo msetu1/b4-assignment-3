@@ -1,9 +1,10 @@
 import { IBlog } from './blog.interface';
 import { Blog } from './blog.model';
 
-// create Blog Service section
-const createBlog = async (playLoad: IBlog): Promise<IBlog> => {
-  const result = await Blog.create(playLoad);
+const createBlog = async (payload: IBlog, author: string) => {
+  const result = await (
+    await Blog.create({ ...payload, author })
+  ).populate('author');
   return result;
 };
 
@@ -16,8 +17,8 @@ const singleBlog = async (id: string) => {
 };
 
 // update Blog
-const updateBlog = async (id: string, playLoad: IBlog) => {
-  const result = await Blog.findByIdAndUpdate(id, playLoad, { new: true });
+const updateBlog = async (id: string, payload: IBlog) => {
+  const result = await Blog.findByIdAndUpdate(id, payload, { new: true });
   return result;
 };
 

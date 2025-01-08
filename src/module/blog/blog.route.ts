@@ -1,9 +1,12 @@
 import express from 'express';
 import { BlogController } from './blog.controller';
+// import { validateRequest } from '../../middlewares/validateRequest';
+// import { BlogValidation } from './blog.validate';
+// import { auth } from '../../middlewares/auth';
 
 const router = express.Router();
 
-//create Blog
+// Blog  route
 router.post('/create-blog', BlogController.createBlog);
 
 // single Blog

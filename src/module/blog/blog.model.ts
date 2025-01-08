@@ -4,10 +4,10 @@ import { IBlog } from './blog.interface';
 
 const blogSchema = new Schema<IBlog>(
   {
-    title: { type: String, required: true },
+    title: { type: String, required: [true, 'title must be needed'] },
     content: { type: String, required: true },
-    author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    isPublished: { type: Boolean, default: false },
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
+    isPublished: { type: Boolean, default: true },
   },
   {
     timestamps: true,

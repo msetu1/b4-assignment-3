@@ -17,8 +17,9 @@ const login = catchAsync(async (req, res) => {
   res.status(200).json({
     success: true,
     message: 'Login successful',
-    token: result?.token,
-    data: result?.verifiedUser,
+    data: {
+      token: result.token,
+    },
   });
 });
 

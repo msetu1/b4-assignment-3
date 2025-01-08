@@ -3,17 +3,26 @@ import { BlogService } from './blog.service';
 
 //create Blog Controller section
 const createBlog = catchAsync(async (req, res) => {
-  const result = await BlogService.createBlog(req.body);
+  const author = req?.user?.author;
+  console.log(author);
+  const payload = req.body;
+  const result = await BlogService.createBlog(payload, author);
+
   res.status(201).json({
     success: true,
     message: 'Blog created successfully',
-    data: result,
+    data: {
+      _id: result?._id,
+      title: result?.title,
+      content: result?.content,
+      author: result?.author,
+    },
   });
 });
 
-// all Blog
+//all Blog Controller section
 
-// Single Blog
+//single Blog Controller section
 const singleBlog = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = await BlogService.singleBlog(id);
@@ -24,7 +33,7 @@ const singleBlog = catchAsync(async (req, res) => {
   });
 });
 
-// update Blog
+// update Blog Controller section
 const updateBlog = catchAsync(async (req, res) => {
   const { id } = req.params;
   const body = req.body;
@@ -36,7 +45,7 @@ const updateBlog = catchAsync(async (req, res) => {
   });
 });
 
-// delete Blog
+// delete Blog Controller section
 const deleteBlog = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = await BlogService.deleteBlog(id);
